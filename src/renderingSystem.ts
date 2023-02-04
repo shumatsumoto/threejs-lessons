@@ -19,10 +19,8 @@ class RenderingSystem {
   });
 
   fov = 25;
-
   camera = new PerspectiveCamera(this.fov);
   controls = new OrbitControls(this.camera, this.canvas);
-
   scene = new Scene();
 
   constructor() {
