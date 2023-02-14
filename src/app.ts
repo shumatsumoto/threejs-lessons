@@ -1,8 +1,13 @@
+import { MODELS } from "./define";
+import { load } from "./meshLoader";
 import renderingSystem from "./renderingSystem";
+import spiralSystem from "./spiralSystem";
 
-const loop = () => {
-  renderingSystem.exec();
-  requestAnimationFrame(loop);
-};
-
-loop();
+Promise.all(MODELS.map((v) => load(v))).then(() => {
+  spiralSystem.init();
+  const loop = () => {
+    renderingSystem.exec();
+    requestAnimationFrame(loop);
+  };
+  loop();
+});
